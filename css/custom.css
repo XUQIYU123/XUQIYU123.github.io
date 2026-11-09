@@ -1,0 +1,61 @@
+/* ================================
+   首页标题：温暖自然 · 文艺复古风
+   ================================ */
+
+/* 主标题 */
+#page-header #site-title {
+    font-family:
+        "Noto Serif SC",
+        "Source Han Serif SC",
+        "Songti SC",
+        "STSong",
+        "SimSun",
+        serif !important;
+
+    font-size: clamp(32px, 4vw, 46px) !important;
+    font-weight: 800 !important;
+
+    /* 温暖的奶油白 */
+    color: #fff4dc !important;
+
+    /* 字间距，让标题更舒展 */
+    letter-spacing: 0.12em;
+
+    /* 柔和的暖棕色阴影 */
+    text-shadow:
+        0 2px 4px rgba(55, 35, 15, 0.55),
+        0 5px 12px rgba(55, 35, 15, 0.35),
+        0 0 24px rgba(255, 225, 170, 0.15);
+
+    /* 平滑过渡 */
+    transition: all 0.35s ease;
+}
+
+/* 鼠标悬停效果 */
+#page-header #site-title:hover {
+    color: #ffffff !important;
+    text-shadow:
+        0 3px 6px rgba(55, 35, 15, 0.65),
+        0 8px 20px rgba(55, 35, 15, 0.4);
+}
+
+/* 副标题 */
+#page-header #site-subtitle {
+    font-family:
+        "Noto Serif SC",
+        "Source Han Serif SC",
+        "Songti SC",
+        "STSong",
+        serif !important;
+
+    font-size: 17px !important;
+    font-weight: 500 !important;
+
+    color: #fff1d2 !important;
+
+    letter-spacing: 0.16em;
+
+    text-shadow:
+        0 2px 5px rgba(45, 30, 15, 0.65),
+        0 4px 12px rgba(45, 30, 15, 0.35);
+}
