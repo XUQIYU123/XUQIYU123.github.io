@@ -246,22 +246,50 @@
     padding: 0 !important;
     margin: 0 !important;
     display: flex;
-    align-items: flex-start;
+    align-items: stretch;
     gap: 0;
 }
 #body-wrap {
     max-width: 100% !important;
 }
 
+/* 分类页隐藏全局悬浮返回按钮（改用正文顶栏里的返回链接，避免遮挡 Banner） */
+#body-wrap:has(.category-layout) .global-back-btn {
+    display: none !important;
+}
+/* 正文顶栏返回链接 */
+.category-topbar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+}
+.category-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 16px;
+    border-radius: 20px;
+    background: #F1F5F9;
+    color: #475569;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none !important;
+    transition: all 0.25s ease;
+}
+.category-back:hover {
+    background: #172033;
+    color: #fff;
+    text-decoration: none !important;
+}
+
 /* 个人介绍名片贴最右：固定 300px，吸顶跟随 */
 #content-inner.layout:has(.category-layout) #aside-content {
     flex: 0 0 300px;
     width: 300px;
+    align-self: flex-start;
     margin: 24px 24px 40px 0;
     position: sticky;
     top: 100px;
-    max-height: calc(100vh - 120px);
-    overflow-y: auto;
 }
 #content-inner.layout:has(.category-layout) #aside-content::-webkit-scrollbar {
     width: 4px;
@@ -284,6 +312,7 @@
     gap: 32px;
     background: #fff;
     min-height: 60vh;
+    position: relative;
 }
 .category-main {
     flex: 1;
@@ -295,8 +324,6 @@
     position: sticky;
     top: 100px;
     align-self: flex-start;
-    max-height: calc(100vh - 120px);
-    overflow-y: auto;
 }
 .category-sidebar::-webkit-scrollbar {
     width: 4px;
@@ -656,32 +683,24 @@ main#content-inner.layout.hide-aside {
    ============================================ */
 .category-layout::before {
     content: '';
-    position: fixed;
+    position: absolute;
     top: 0;
     right: 0;
-    width: 40vw;
-    height: 100vh;
+    width: 34%;
+    height: 100%;
     pointer-events: none;
     z-index: 0;
-    opacity: 0.06;
-    background-image:
-        /* 芯片引脚 */
-        radial-gradient(circle 2px at 10% 20%, #172033 100%, transparent),
-        radial-gradient(circle 2px at 10% 30%, #172033 100%, transparent),
-        radial-gradient(circle 2px at 10% 40%, #172033 100%, transparent),
-        radial-gradient(circle 2px at 10% 50%, #172033 100%, transparent),
-        radial-gradient(circle 2px at 10% 60%, #172033 100%, transparent),
-        radial-gradient(circle 2px at 10% 70%, #172033 100%, transparent),
-        /* 波形线条 */
-        linear-gradient(90deg, transparent 0%, #3b82f6 50%, transparent 100%);
-    background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 200% 100%;
-    animation: waveform-scroll 20s linear infinite;
+    /* 极简点阵纹理，向右淡出，不再整块铺蓝 */
+    background-image: radial-gradient(rgba(23, 32, 51, 0.5) 1px, transparent 1px);
+    background-size: 20px 20px;
+    -webkit-mask-image: linear-gradient(to left, rgba(0, 0, 0, 0.55) 0%, transparent 70%);
+    mask-image: linear-gradient(to left, rgba(0, 0, 0, 0.55) 0%, transparent 70%);
 }
 .category-layout::after {
     content: '01001000 01100101 01101100 01101100 01101111';
-    position: fixed;
-    bottom: 80px;
-    right: 40px;
+    position: absolute;
+    bottom: 24px;
+    right: 24px;
     font-family: 'Courier New', monospace;
     font-size: 12px;
     color: #3b82f6;
