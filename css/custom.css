@@ -239,24 +239,45 @@
    分类详情页（深蓝 Banner + 三列卡片 + 右侧 Sticky 侧边栏）
    ============================================ */
 
-/* 突破 Butterfly 所有外层宽度限制：分类页全宽铺满 */
-#content-inner.layout.hide-aside {
+/* 分类页外层全宽：只作用于含 .category-layout 的页面，文章页不受影响 */
+#content-inner.layout:has(.category-layout) {
     max-width: 100% !important;
     width: 100% !important;
     padding: 0 !important;
     margin: 0 !important;
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
 }
 #body-wrap {
     max-width: 100% !important;
 }
-#body-wrap .layout {
-    max-width: 100% !important;
+
+/* 个人介绍名片贴最右：固定 300px，吸顶跟随 */
+#content-inner.layout:has(.category-layout) #aside-content {
+    flex: 0 0 300px;
+    width: 300px;
+    margin: 24px 24px 40px 0;
+    position: sticky;
+    top: 100px;
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+}
+#content-inner.layout:has(.category-layout) #aside-content::-webkit-scrollbar {
+    width: 4px;
+}
+/* 小屏收起个人名片，避免和内容抢宽度 */
+@media (max-width: 1400px) {
+    #content-inner.layout:has(.category-layout) #aside-content {
+        display: none;
+    }
 }
 
-/* 分类页整体布局：主内容 + 右侧侧边栏（全宽铺满） */
+/* 分类页整体布局：主内容 + 右侧侧边栏（吃掉名片左侧的全部空间） */
 .category-layout {
-    width: 100%;
-    max-width: 100%;
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: none;
     margin: 0;
     padding: 24px 32px 60px 80px;
     display: flex;
@@ -547,6 +568,7 @@ main#content-inner.layout.hide-aside {
 
 /* 空状态 */
 .category-empty {
+    grid-column: 1 / -1;
     text-align: center;
     padding: 60px 20px;
     color: #94A3B8;
